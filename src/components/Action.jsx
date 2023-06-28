@@ -1,12 +1,12 @@
 import React from "react";
 import { useState } from "react";
 
-const Action = ({ handleSubmit }) => {
+const Action = ({ ActionSubmit }) => {
   const [action, setAction] = useState("");
 
   const handleFormSubmit = (e) => {
     e.preventDefault();
-    handleSubmit(action);
+    ActionSubmit(action);
   };
   return (
     <form onSubmit={handleFormSubmit}>
@@ -15,8 +15,9 @@ const Action = ({ handleSubmit }) => {
         onChange={(e) => setAction(e.target.value)}
         value={action}
       />
-
-      <input type="submit" value="OK" />
+      <button onClick={handleFormSubmit} value="OK">
+        ok
+      </button>
     </form>
   );
 };

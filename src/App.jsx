@@ -1,6 +1,7 @@
 import { useState } from "react";
 import "./App.css";
-
+import React, { forwardRef, useImperativeHandle, useRef } from "react";
+import { createRoot } from "react-dom/client";
 import Action from "./components/Action";
 import Result from "./components/Result";
 
@@ -8,11 +9,12 @@ function App() {
   const [numberOne, setNumberOne] = useState("");
   const [numberTwo, setNumberTwo] = useState("");
   const [inputValue, setInputValue] = useState("");
-
+  const ref = useRef();
   const handleSubmit = (action) => {
-    e.preventDefault();
+    setInputValue(action);
+    console.log(inputValue);
 
-    console.log("sim");
+    ref.current.Problem();
   };
 
   return (
@@ -37,9 +39,10 @@ function App() {
           value={numberTwo}
         />
       </div>
-      <Action handleFormSubmit={handleSubmit} />
+      <Action ActionSubmit={handleSubmit} />
 
       <Result
+        ref={ref}
         numberOne={numberOne}
         numberTwo={numberTwo}
         inputValue={inputValue}
